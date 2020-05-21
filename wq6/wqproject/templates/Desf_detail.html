@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{label}}</title>
+    {{>head}}
+  </head>
+  <body>
+    <div data-role="page">
+      <div data-role="header">
+        {{>home}}
+        <h1>{{label}}</h1>
+        {{#page_config.can_change}}
+        <a href="{{rt}}/Desfs/{{id}}/edit" data-icon="edit" data-transition="flip">
+          Edit
+        </a>
+        {{/page_config.can_change}}
+      </div>
+      <div role="main" class="ui-content">
+          <h1>{{label}}</h1>
+          <table>
+            <tr>
+              <th>Tipo de desfibrilador</th>
+              <td>{{tdesf_label}}</td>
+            </tr>
+            <tr>
+              <th>Ubicación</th>
+              <td>{{localizacion}}</td>
+            </tr>
+            <tr>
+              <th>Persona responsable</th>
+              <td>{{label}}</td>
+            </tr>
+          </table>
+        <h3>Imagen o foto</h3>
+        <img src="{{imagen}}" alt="Imagen o foto - {{label}}" style="max-width:100%">
+
+      </div>
+    </div>
+  </body>
+</html>

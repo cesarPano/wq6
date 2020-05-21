@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{^id}}Add{{/id}}{{#id}}Edit{{/id}} Desf</title>
+    {{>head}}
+  </head>
+  <body>
+    <div data-role="page">
+      <div data-role="header">
+        {{>home}}
+        <h1>{{^id}}Add{{/id}}{{#id}}Edit{{/id}} Desf</h1>
+        {{#id}}
+        {{#page_config.can_delete}}
+        <form action="{{svc}}/Desfs/{{id}}" method="post" data-ajax="false"
+          data-wq-json="true" data-wq-background-sync="false"
+          onsubmit="return require('wq/app').confirmSubmit(this, 'Are you sure you want to delete this record?');">
+          {{>csrf}}
+          <input type=hidden name="_method" value="DELETE">
+          <button type="submit" data-icon="delete" class="ui-btn-right">
+            Delete
+          </button>
+        </form>
+        {{/page_config.can_delete}}
+        {{/id}}
+      </div>
+      <div role="main" class="ui-content">
+        <form action="{{svc}}/Desfs/{{id}}" method="post" data-ajax="false"
+            data-wq-json="true"
+            {{#outbox_id}}
+              data-wq-outbox-id="{{outbox_id}}"
+              data-wq-outbox-preserve="imagen,"
+            {{/outbox_id}}>
+          {{>csrf}}
+          {{#id}}
+          <input type=hidden name="_method" value="PUT">
+          {{/id}}
+          <ul data-role="listview" data-inset="true">
+            <li class="ui-field-contain">
+              <label for='Desf-tdesf_id'>Tipo de desfibrilador</label>
+              <select id='Desf-tdesf_id' data-xform-type='string' name='tdesf_id' required>
+                <option value="">Select one...</option>
+                {{#tdesf_list}}
+                <option value="{{id}}"{{#selected}} selected{{/selected}}>
+                 {{#outbox}}*{{/outbox}} {{label}}
+                </option>
+                {{/tdesf_list}}
+              </select>
+              <p class='error Desf-tdesf_id-errors'></p>
+            </li>
+            <li class="ui-field-contain">
+              <label for='Desf-localizacion'>Ubicación</label>
+              <input id='Desf-localizacion' type='text' data-xform-type='string' name='localizacion' required value="{{localizacion}}">
+              <p class='error Desf-localizacion-errors'></p>
+            </li>
+            <li class="ui-field-contain">
+              <label for='Desf-responsable'>Persona responsable</label>
+              <input id='Desf-responsable' type='text' data-xform-type='string' name='responsable' value="{{responsable}}">
+              <p class='error Desf-responsable-errors'></p>
+            </li>
+            {{^imagen.name}}
+            <li class="ui-field-contain">
+              {{#imagen}}
+              <img src="{{imagen}}"
+                   id="Desf-imagen-preview">
+              {{/imagen}}
+              {{^imagen}}
+              <img src="{{rt}}/images/empty.png"
+                   id="Desf-imagen-preview">
+              {{/imagen}}
+              <label for="Desf-imagen">Imagen o foto</label>
+              {{#native}}
+              <input type="hidden" name="imagen" id="Desf-imagen"
+                     data-wq-type="file" data-wq-preview="Desf-imagen-preview">
+              <div>
+                <button type="button" data-inline="true" data-icon="camera" data-mini="true"
+                   data-wq-action="take" data-wq-input="Desf-imagen">
+                   Camera
+                </button>
+                <button type="button" data-inline="true" data-icon="grid" data-mini="true"
+                   data-wq-action="pick" data-wq-input="Desf-imagen">
+                   Gallery
+                </button>
+              </div>
+              {{/native}}
+              {{^native}}
+              <input type="file" name="imagen" id="Desf-imagen" accept='image/*'
+                     data-wq-preview="Desf-imagen-preview">
+              {{/native}}
+              <p class="error Desf-imagen-errors"></p>
+            </li>
+            {{/imagen.name}}
+            {{#imagen.name}}
+            {{#imagen}}
+            <li class="ui-field-contain">
+              <img src="{{image_url}}">
+              <label for="Desf-imagen">Imagen o foto</label>
+              <input type="text" id="Desf-imagen" disabled
+                  value="{{name}} ({{type}}, {{body.size}} bytes)">
+              <p class="error Desf-imagen-errors"></p>
+            </li>
+            {{/imagen}}
+            {{/imagen.name}}
+            <li>
+              <div class="ui-grid-a">
+                <div class="ui-block-a">
+                  <a href="{{rt}}/Desfs/{{id}}" data-role="button" data-icon="back" data-direction="reverse">
+                    Back
+                  </a>
+                </div>
+                <div class="ui-block-b">
+                  <button type="submit" data-icon="check" data-theme="b">
+                    Submit
+                  </button>
+                </div>
+              </div>
+              <p class="error Desf-errors"></p>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{"errorMessage": "name 'x' is not defined", "errorType": "NameError", "stackTrace": [["/var/task/lambda_function.py", 6, "lambda_handler", "'body': (json.dumps('La potencia 10 de 2 es ' + str(x)))"]]}

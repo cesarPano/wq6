@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{label}}</title>
+    {{>head}}
+  </head>
+  <body>
+    <div data-role="page">
+      <div data-role="header">
+        {{>home}}
+        <h1>{{label}}</h1>
+        {{#page_config.can_change}}
+        <a href="{{rt}}/Trans/{{id}}/edit" data-icon="edit" data-transition="flip">
+          Edit
+        </a>
+        {{/page_config.can_change}}
+      </div>
+      <div role="main" class="ui-content">
+          <h1>{{label}}</h1>
+          <table>
+            <tr>
+              <th>Desfibrilador</th>
+              <td>{{desf_label}}</td>
+            </tr>
+            <tr>
+              <th>Fecha de transmisión</th>
+              <td>{{fecha}}</td>
+            </tr>
+            <tr>
+              <th>Hora de transmisión</th>
+              <td>{{hora}}</td>
+            </tr>
+            <tr>
+              <th>Texto transmitido</th>
+              <td>{{imagen}}</td>
+            </tr>
+          </table>
+      </div>
+    </div>
+  </body>
+</html>
