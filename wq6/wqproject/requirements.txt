@@ -31,7 +31,7 @@ sqlparse==0.3.1
 traceback2==1.4.0
 unicodecsv==0.14.1
 unittest2==1.1.0
-urllib3==1.25.9
+urllib3==1.26.5
 wq==1.2.0
 wq.app==1.2.0
 wq.core==1.2.0
